@@ -3,21 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/services_item"
+        android:id="@+id/servicesFragment"
         android:icon="@drawable/services"
-        android:title="Services" />
+        android:title="@string/services" />
     <item
-        android:id="@+id/clients_item"
+        android:id="@+id/clientsFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/baseline_person_24"
-        android:title="Clients" />
+        android:title="@string/clients" />
     <item
-        android:id="@+id/chemistry_item"
-        android:icon="@drawable/chemistry"
-        android:title="Chemistry" />
-    <item
-        android:id="@+id/cashout_item"
+        android:id="@+id/chemistryFragment"
         android:icon="@drawable/cash"
-        android:title="Cashout" />
+        android:title="@string/chemistry" />
+    <item
+        android:id="@+id/cashoutFragment"
+        android:icon="@drawable/chemistry"
+        android:title="@string/cashout" />
 </menu>

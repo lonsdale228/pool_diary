@@ -12,10 +12,28 @@
         <action
             android:id="@+id/action_clientsFragment_to_aboutUserActivity"
             app:destination="@id/aboutUserActivity" />
+        <action
+            android:id="@+id/action_clientsFragment_to_addUserActivity"
+            app:destination="@id/addUserActivity" />
     </fragment>
     <activity
         android:id="@+id/aboutUserActivity"
         android:name="com.example.pooldiary.AboutUserActivity"
         android:label="activity_about_user"
         tools:layout="@layout/activity_about_user" />
+    <fragment
+        android:id="@+id/servicesFragment"
+        android:name="com.example.pooldiary.fragments.ServicesFragment"
+        android:label="fragment_services"
+        tools:layout="@layout/fragment_services" />
+    <fragment
+        android:id="@+id/chemistryFragment"
+        android:name="com.example.pooldiary.fragments.ChemistryFragment"
+        android:label="fragment_chemistry"
+        tools:layout="@layout/fragment_chemistry" />
+    <activity
+        android:id="@+id/addUserActivity"
+        android:name="com.example.pooldiary.AddUserActivity"
+        android:label="activity_add_user"
+        tools:layout="@layout/activity_add_user" />
 </navigation>
