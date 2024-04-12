@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/clientsFragment">
+    <fragment
+        android:id="@+id/clientsFragment"
+        android:name="com.example.pooldiary.fragments.ClientsFragment"
+        android:label="fragment_clients"
+        tools:layout="@layout/fragment_clients" >
+        <action
+            android:id="@+id/action_clientsFragment_to_aboutUserActivity"
+            app:destination="@id/aboutUserActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/aboutUserActivity"
+        android:name="com.example.pooldiary.AboutUserActivity"
+        android:label="activity_about_user"
+        tools:layout="@layout/activity_about_user" />
+</navigation>

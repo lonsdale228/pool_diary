@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/services_item"
+        android:icon="@drawable/services"
+        android:title="Services" />
+    <item
+        android:id="@+id/clients_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/baseline_person_24"
+        android:title="Clients" />
+    <item
+        android:id="@+id/chemistry_item"
+        android:icon="@drawable/chemistry"
+        android:title="Chemistry" />
+    <item
+        android:id="@+id/cashout_item"
+        android:icon="@drawable/cash"
+        android:title="Cashout" />
+</menu>
