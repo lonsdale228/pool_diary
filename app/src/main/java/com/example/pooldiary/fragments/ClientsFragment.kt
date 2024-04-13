@@ -1,23 +1,25 @@
 package com.example.pooldiary.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pooldiary.R
 import com.example.pooldiary.adapters.ClientsAdapter
+import com.example.pooldiary.database.view.UserViewModel
 import com.example.pooldiary.databinding.FragmentClientsBinding
-import com.example.pooldiary.models.User
 import com.google.gson.Gson
 
 class ClientsFragment : Fragment() {
     private var _binding: FragmentClientsBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var userViewModel: UserViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,31 +40,20 @@ class ClientsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val clientsRv = binding.clientsRecyclerView
-
-        val items = listOf<User>(
-            User(0,"test_name0", "centralna", "+38099999999", "тест записка","tut i tam"),
-            User(1,"test_name1", "centralna", "+38099999999", "тест записка","tut i tam"),
-            User(2,"test_name2", "centralna", "+38099999999", "тест записка","tut i tam"),
-            User(3,"test_name3", "centralna", "+38099999999", "тест записка","tut i tam"),
-        )
-
-
-
-
-        val clientsRvAdapter =  ClientsAdapter(items){
+        val clientsRvAdapter =  ClientsAdapter(emptyList()){
             Toast.makeText(view.context, it.id.toString(), Toast.LENGTH_SHORT).show()
-//            val intent = Intent(view.context, AboutUserActivity::class.java)
-//            intent.putExtra("user", Gson().toJson(it))
-
             val bundle = Bundle()
             bundle.putString("user", Gson().toJson(it))
 
             findNavController().navigate(R.id.aboutUserFragment, bundle)
-
-//            startActivity(intent)
         }
 
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel.getAllUsers.observe(viewLifecycleOwner, Observer { user ->
+            clientsRvAdapter.setData(user)
+        })
         clientsRv.adapter = clientsRvAdapter
 
     }

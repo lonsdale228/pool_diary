@@ -14,4 +14,5 @@ interface UserDao {
     @Delete fun delete(user: User)
 
     @Query("SELECT * FROM users ORDER BY name ASC") fun getAllUsers(): LiveData<List<User>>
+
 }
