@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pooldiary.databinding.ClientRowBinding
+import com.example.pooldiary.databinding.ServiceRowBinding
 import com.example.pooldiary.models.Service
 class ServicesAdapter(
     private var allServices: List<Service>,
@@ -12,7 +12,7 @@ class ServicesAdapter(
 ) : RecyclerView.Adapter<ServicesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ClientRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ServiceRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding).apply {
             binding.root.setOnClickListener {
                 val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION } ?: return@setOnClickListener
@@ -24,8 +24,8 @@ class ServicesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val service = allServices[position]
         with(holder.binding) {
-            name.text = service.datetime
-            address.text = service.pool_status
+              nameService.text = service.pool_status
+              addressService.text = service.note
         }
     }
 
@@ -37,7 +37,7 @@ class ServicesAdapter(
         diffResult.dispatchUpdatesTo(this)
     }
 
-    class ViewHolder(val binding: ClientRowBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ServiceRowBinding) : RecyclerView.ViewHolder(binding.root)
 }
 
 class ServiceDiffCallback(private val oldList: List<Service>, private val newList: List<Service>) : DiffUtil.Callback() {

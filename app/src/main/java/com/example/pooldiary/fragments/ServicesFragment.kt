@@ -8,19 +8,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.example.pooldiary.R
-import com.example.pooldiary.adapters.ClientsAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pooldiary.adapters.ServicesAdapter
 import com.example.pooldiary.database.view.ServiceViewModel
-import com.example.pooldiary.database.view.UserViewModel
 import com.example.pooldiary.databinding.FragmentServicesBinding
-import com.google.gson.Gson
 
 class ServicesFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     private lateinit var serviceViewModel: ServiceViewModel
     private var _binding: FragmentServicesBinding? = null
     private val binding get() = _binding!!
@@ -32,20 +25,18 @@ class ServicesFragment : Fragment() {
         _binding = FragmentServicesBinding.inflate(inflater,container,false)
         val view = binding.root
 
-
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.servicesRecycleView.layoutManager = LinearLayoutManager(view.context)
+
         val servicesRv = binding.servicesRecycleView
         val servicesRvAdapter =  ServicesAdapter(emptyList()){
             Toast.makeText(view.context, it.id.toString(), Toast.LENGTH_SHORT).show()
-//            val bundle = Bundle()
-//            bundle.putString("user", Gson().toJson(it))
-//
-//            findNavController().navigate(R.id.aboutUserFragment, bundle)
         }
 
         serviceViewModel = ViewModelProvider(this).get(ServiceViewModel::class.java)

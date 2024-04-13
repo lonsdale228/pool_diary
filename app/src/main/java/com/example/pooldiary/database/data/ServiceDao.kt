@@ -15,6 +15,6 @@ interface ServiceDao {
 
     @Query("SELECT * FROM services ORDER BY datetime ASC") fun getAllServices(): LiveData<List<Service>>
 
-    @Query("SELECT * FROM services JOIN users ON services.user_id = users.id ORDER BY datetime ASC") fun getUserServices(): LiveData<List<Service>>
+    @Query("SELECT * FROM services JOIN users ON services.user_id = users.id WHERE services.user_id = :userId ORDER BY datetime ASC") fun getUserServices(userId: Int): LiveData<List<Service>>
 
 }

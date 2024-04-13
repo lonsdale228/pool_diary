@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_servicesFragment_to_addServiceFragment"
             app:destination="@id/addServiceFragment" />
+        <action
+            android:id="@+id/action_servicesFragment_to_placeholder"
+            app:destination="@id/placeholder" />
     </fragment>
     <fragment
         android:id="@+id/chemistryFragment"
@@ -44,10 +47,15 @@
         android:id="@+id/aboutUserFragment"
         android:name="com.example.pooldiary.fragments.subfragments.AboutUserFragment"
         android:label="fragment_about_user"
-        tools:layout="@layout/fragment_about_user" />
+        tools:layout="@layout/fragment_about_user" >
+        <action
+            android:id="@+id/action_aboutUserFragment_to_placeholder"
+            app:destination="@id/placeholder" />
+    </fragment>
     <fragment
         android:id="@+id/addServiceFragment"
         android:name="com.example.pooldiary.fragments.subfragments.AddServiceFragment"
         android:label="fragment_blank_add_service"
         tools:layout="@layout/fragment_add_service" />
+    <fragment android:id="@+id/placeholder" />
 </navigation>
