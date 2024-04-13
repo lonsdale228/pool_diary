@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.bottomNavView
         navController = findNavController(R.id.nav_host_fragment_activity_main)
 
+        // TODO fix this
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            navView.menu.findItem(destination.id)?.isChecked = true
+        }
+
         NavigationUI.setupWithNavController(navView, navController)
     }
 }

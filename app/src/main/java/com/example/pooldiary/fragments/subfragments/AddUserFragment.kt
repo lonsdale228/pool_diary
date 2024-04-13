@@ -1,25 +1,27 @@
-package com.example.pooldiary.fragments
+package com.example.pooldiary.fragments.subfragments;
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pooldiary.databinding.FragmentChemistryBinding
+import com.example.pooldiary.databinding.FragmentAddUserBinding
 
-class ChemistryFragment : Fragment() {
-    private var _binding:FragmentChemistryBinding? = null
+class AddUserFragment : Fragment() {
+
+    private var _binding: FragmentAddUserBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentChemistryBinding.inflate(inflater,container,false)
-        val view = binding.root
-        
+        _binding = FragmentAddUserBinding.inflate(inflater, container, false)
 
-        return view
+
+
+        return binding.root
     }
 
     override fun onDestroyView() {

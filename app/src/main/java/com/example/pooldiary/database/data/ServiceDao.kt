@@ -14,4 +14,7 @@ interface ServiceDao {
     @Delete fun delete(service: Service)
 
     @Query("SELECT * FROM services ORDER BY datetime ASC") fun getAllServices(): LiveData<List<Service>>
+
+    @Query("SELECT * FROM services JOIN users ON services.user_id = users.id ORDER BY datetime ASC") fun getUserServices(): LiveData<List<Service>>
+
 }

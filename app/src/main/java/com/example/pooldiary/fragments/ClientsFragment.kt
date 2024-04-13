@@ -1,15 +1,14 @@
 package com.example.pooldiary.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pooldiary.AboutUserActivity
-import com.example.pooldiary.AddUserActivity
+import com.example.pooldiary.R
 import com.example.pooldiary.adapters.ClientsAdapter
 import com.example.pooldiary.databinding.FragmentClientsBinding
 import com.example.pooldiary.models.User
@@ -22,16 +21,14 @@ class ClientsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentClientsBinding.inflate(inflater,container,false)
         val view = binding.root
 
         val floatingBtn = binding.floatingActionButton
 
         floatingBtn.setOnClickListener {
-            val intent = Intent(view.context, AddUserActivity::class.java)
-//            intent.putExtra("user", it as Parcelable)
-            startActivity(intent)
+            findNavController().navigate(R.id.addUserFragment)
         }
 
         binding.clientsRecyclerView.layoutManager = LinearLayoutManager(view.context)
@@ -50,11 +47,20 @@ class ClientsFragment : Fragment() {
             User(3,"test_name3", "centralna", "+38099999999", "тест записка","tut i tam"),
         )
 
+
+
+
         val clientsRvAdapter =  ClientsAdapter(items){
             Toast.makeText(view.context, it.id.toString(), Toast.LENGTH_SHORT).show()
-            val intent = Intent(view.context, AboutUserActivity::class.java)
-            intent.putExtra("user", Gson().toJson(it))
-            startActivity(intent)
+//            val intent = Intent(view.context, AboutUserActivity::class.java)
+//            intent.putExtra("user", Gson().toJson(it))
+
+            val bundle = Bundle()
+            bundle.putString("user", Gson().toJson(it))
+
+            findNavController().navigate(R.id.aboutUserFragment, bundle)
+
+//            startActivity(intent)
         }
 
         clientsRv.adapter = clientsRvAdapter

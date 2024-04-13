@@ -10,17 +10,12 @@
         android:label="fragment_clients"
         tools:layout="@layout/fragment_clients" >
         <action
-            android:id="@+id/action_clientsFragment_to_aboutUserActivity"
-            app:destination="@id/aboutUserActivity" />
+            android:id="@+id/action_clientsFragment_to_addUserFragment"
+            app:destination="@id/addUserFragment" />
         <action
-            android:id="@+id/action_clientsFragment_to_addUserActivity"
-            app:destination="@id/addUserActivity" />
+            android:id="@+id/action_clientsFragment_to_aboutUserFragment"
+            app:destination="@id/aboutUserFragment" />
     </fragment>
-    <activity
-        android:id="@+id/aboutUserActivity"
-        android:name="com.example.pooldiary.AboutUserActivity"
-        android:label="activity_about_user"
-        tools:layout="@layout/activity_about_user" />
     <fragment
         android:id="@+id/servicesFragment"
         android:name="com.example.pooldiary.fragments.ServicesFragment"
@@ -31,9 +26,19 @@
         android:name="com.example.pooldiary.fragments.ChemistryFragment"
         android:label="fragment_chemistry"
         tools:layout="@layout/fragment_chemistry" />
-    <activity
-        android:id="@+id/addUserActivity"
-        android:name="com.example.pooldiary.AddUserActivity"
-        android:label="activity_add_user"
-        tools:layout="@layout/activity_add_user" />
+    <fragment
+        android:id="@+id/cashoutFragment"
+        android:name="com.example.pooldiary.fragments.CashoutFragment"
+        android:label="fragment_cashout"
+        tools:layout="@layout/fragment_cashout" />
+    <fragment
+        android:id="@+id/addUserFragment"
+        android:name="com.example.pooldiary.fragments.subfragments.AddUserFragment"
+        android:label="fragment_add_user"
+        tools:layout="@layout/fragment_add_user" />
+    <fragment
+        android:id="@+id/aboutUserFragment"
+        android:name="com.example.pooldiary.fragments.subfragments.AboutUserFragment"
+        android:label="fragment_about_user"
+        tools:layout="@layout/fragment_about_user" />
 </navigation>
