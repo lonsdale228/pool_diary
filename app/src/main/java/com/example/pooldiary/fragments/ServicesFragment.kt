@@ -8,10 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pooldiary.R
 import com.example.pooldiary.adapters.ServicesAdapter
 import com.example.pooldiary.database.view.ServiceViewModel
 import com.example.pooldiary.databinding.FragmentServicesBinding
+import com.example.pooldiary.models.Service
+import com.google.gson.Gson
 
 class ServicesFragment : Fragment() {
     private lateinit var serviceViewModel: ServiceViewModel
@@ -36,7 +40,10 @@ class ServicesFragment : Fragment() {
 
         val servicesRv = binding.servicesRecycleView
         val servicesRvAdapter =  ServicesAdapter(emptyList()){
-            Toast.makeText(view.context, it.id.toString(), Toast.LENGTH_SHORT).show()
+            val bundle = Bundle()
+            bundle.putString("service", Gson().toJson(it))
+
+            findNavController().navigate(R.id.aboutServiceFragment, bundle)
         }
 
         serviceViewModel = ViewModelProvider(this).get(ServiceViewModel::class.java)
@@ -45,6 +52,12 @@ class ServicesFragment : Fragment() {
         })
         servicesRv.adapter = servicesRvAdapter
 
+
+        val btnAddService = binding.btnAddService
+
+        btnAddService.setOnClickListener {
+            serviceViewModel.addService(Service(0,5, "Aboba", "Norm","Yes", "No", "today"))
+        }
     }
 
     override fun onDestroyView() {

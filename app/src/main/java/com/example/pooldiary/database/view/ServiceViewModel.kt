@@ -3,7 +3,6 @@ package com.example.pooldiary.database.view
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pooldiary.database.UserDatabase
 import com.example.pooldiary.database.repository.ServiceRepository
@@ -14,14 +13,12 @@ import kotlinx.coroutines.launch
 class ServiceViewModel(application: Application): AndroidViewModel(application) {
 
     val getAllServices: LiveData<List<Service>>
-//    val getUserServices: LiveData<List<Service>>
     private val repository: ServiceRepository
 
     init{
         val serviceDao = UserDatabase.getDatabase(application).serviceDao()
         repository = ServiceRepository(serviceDao)
         getAllServices = repository.getAllServices
-//        getUserServices = repository.getUserServices
     }
 
     fun addService(service: Service){
@@ -34,7 +31,7 @@ class ServiceViewModel(application: Application): AndroidViewModel(application) 
         return repository.getUserServices(userId)
     }
 
-    fun deleteUser(service: Service){
+    fun deleteService(service: Service){
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteService(service)
         }

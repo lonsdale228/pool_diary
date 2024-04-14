@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="aboba">@color/black</color>
+    <color name="dark_red">#9F2727</color>
 </resources>

@@ -14,4 +14,8 @@ class UserRepository(private val userDao: UserDao){
     fun deleteUser(user: User){
         userDao.delete(user)
     }
+
+    fun getUserById(userId: Int): LiveData<User>{
+        return userDao.getUserById(userId)
+    }
 }

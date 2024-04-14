@@ -50,4 +50,9 @@
     <string name="clients">Clients</string>
     <string name="chemistry">Chemistry</string>
     <string name="cashout">Cashout</string>
+    <string name="client_name">Client name</string>
+    <string name="street_name">Street name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="note">Note</string>
+    <string name="add_user">Add User</string>
 </resources>

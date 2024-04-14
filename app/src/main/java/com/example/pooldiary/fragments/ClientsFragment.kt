@@ -43,7 +43,6 @@ class ClientsFragment : Fragment() {
 
         val clientsRv = binding.clientsRecyclerView
         val clientsRvAdapter =  ClientsAdapter(emptyList()){
-            Toast.makeText(view.context, it.id.toString(), Toast.LENGTH_SHORT).show()
             val bundle = Bundle()
             bundle.putString("user", Gson().toJson(it))
 

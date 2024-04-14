@@ -33,4 +33,8 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun getUserById(userId: Int): LiveData<User>{
+        return repository.getUserById(userId)
+    }
+
 }
