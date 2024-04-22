@@ -11,10 +11,16 @@
         tools:layout="@layout/fragment_clients" >
         <action
             android:id="@+id/action_clientsFragment_to_addUserFragment"
-            app:destination="@id/addUserFragment" />
+            app:destination="@id/addUserFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_clientsFragment_to_aboutUserFragment"
-            app:destination="@id/aboutUserFragment" />
+            app:destination="@id/aboutUserFragment"
+            app:enterAnim="@anim/slide_to_left"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/servicesFragment"
@@ -23,10 +29,14 @@
         tools:layout="@layout/fragment_services" >
         <action
             android:id="@+id/action_servicesFragment_to_addServiceFragment"
-            app:destination="@id/addServiceFragment" />
+            app:destination="@id/addServiceFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_servicesFragment_to_aboutServiceFragment"
-            app:destination="@id/aboutServiceFragment" />
+            app:destination="@id/aboutServiceFragment"
+            app:enterAnim="@anim/slide_to_left"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/chemistryFragment"
@@ -50,17 +60,41 @@
         tools:layout="@layout/fragment_about_user" >
         <action
             android:id="@+id/action_aboutUserFragment_to_aboutServiceFragment"
-            app:destination="@id/aboutServiceFragment" />
+            app:destination="@id/aboutServiceFragment"
+            app:enterAnim="@anim/slide_to_left"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_aboutUserFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/addServiceFragment"
         android:name="com.example.pooldiary.fragments.subfragments.AddServiceFragment"
         android:label="fragment_blank_add_service"
-        tools:layout="@layout/fragment_add_service" />
+        tools:layout="@layout/fragment_add_service" >
+        <action
+            android:id="@+id/action_addServiceFragment_to_searchUserFragment"
+            app:destination="@id/searchUserFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_addServiceFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+    </fragment>
     <fragment android:id="@+id/placeholder" />
     <fragment
         android:id="@+id/aboutServiceFragment"
         android:name="com.example.pooldiary.fragments.subfragments.AboutServiceFragment"
         android:label="fragment_about_service"
         tools:layout="@layout/fragment_about_service" />
+    <fragment
+        android:id="@+id/searchUserFragment"
+        android:name="com.example.pooldiary.fragments.SearchUserFragment"
+        android:label="fragment_search_user"
+        tools:layout="@layout/fragment_search_user" >
+        <action
+            android:id="@+id/action_searchUserFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment" />
+    </fragment>
 </navigation>

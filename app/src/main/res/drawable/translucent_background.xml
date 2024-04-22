@@ -1,0 +1,5 @@
+<!-- res/drawable/translucent_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#AAFFFFFF"/> <!-- AA is the alpha for translucency -->
+</shape>

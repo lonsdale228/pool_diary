@@ -30,7 +30,7 @@ class ClientsFragment : Fragment() {
         val floatingBtn = binding.floatingActionButton
 
         floatingBtn.setOnClickListener {
-            findNavController().navigate(R.id.addUserFragment)
+            findNavController().navigate(R.id.action_clientsFragment_to_addUserFragment)
         }
 
         binding.clientsRecyclerView.layoutManager = LinearLayoutManager(view.context)
@@ -46,7 +46,7 @@ class ClientsFragment : Fragment() {
             val bundle = Bundle()
             bundle.putString("user", Gson().toJson(it))
 
-            findNavController().navigate(R.id.aboutUserFragment, bundle)
+            findNavController().navigate(R.id.action_clientsFragment_to_aboutUserFragment, bundle)
         }
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
@@ -54,6 +54,8 @@ class ClientsFragment : Fragment() {
             clientsRvAdapter.setData(user)
         })
         clientsRv.adapter = clientsRvAdapter
+
+
 
     }
 

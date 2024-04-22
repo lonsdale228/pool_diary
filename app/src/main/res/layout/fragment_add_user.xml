@@ -19,17 +19,18 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtNote"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="275dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
+        android:layout_marginTop="100dp"
 
+        android:ems="10"
         android:hint="@string/note"
         android:inputType="text"
         app:helperText="Optional"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSreet"
+        app:layout_constraintTop_toTopOf="@+id/edtSreet"
         app:startIconDrawable="@drawable/baseline_article_24">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -41,45 +42,42 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtName2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="275dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
+        android:layout_marginTop="100dp"
 
+        android:ems="10"
         android:hint="@string/phone_number"
         app:helperTextTextColor="@color/dark_red"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtName"
-        app:startIconDrawable="@drawable/baseline_call_24"
+        app:layout_constraintTop_toTopOf="@+id/edtName"
         app:prefixText="+380"
-        >
+        app:startIconDrawable="@drawable/baseline_call_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:singleLine="true"
-            android:maxLength="12"
-            />
+            android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtName"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="275dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
         android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="@string/client_name"
+        android:inputType="text"
         app:helperText=""
-        app:helperTextTextColor="@color/dark_red"
         app:helperTextEnabled="false"
 
-        android:inputType="text"
+        app:helperTextTextColor="@color/dark_red"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/baseline_person_24">
@@ -88,24 +86,24 @@
             android:id="@+id/textInputName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"/>
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtSreet"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="275dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
+        android:layout_marginTop="100dp"
 
+        android:ems="10"
         android:hint="@string/street_name"
         android:inputType="text"
-        app:helperTextTextColor="@color/dark_red"
 
+        app:helperTextTextColor="@color/dark_red"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtName2"
+        app:layout_constraintTop_toTopOf="@+id/edtName2"
         app:startIconDrawable="@drawable/street_icon">
 
         <com.google.android.material.textfield.TextInputEditText

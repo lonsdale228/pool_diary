@@ -55,4 +55,10 @@
     <string name="phone_number">Phone number</string>
     <string name="note">Note</string>
     <string name="add_user">Add User</string>
+    <string name="pool_status">Pool status:</string>
+    <string name="ph">PH:</string>
+    <string name="add_service">Add service</string>
+    <string name="datetime">Datetime:</string>
+    <string name="now">Now</string>
+    <string name="last_visit">Last visit:</string>
 </resources>

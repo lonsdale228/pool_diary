@@ -37,18 +37,18 @@ class AboutUserFragment : Fragment() {
         binding.userName.text = user.name
         binding.userName.isSelected = true
         binding.userPhoneNumber.text = user.phone_number
-
+        binding.streetName.text = user.address
         binding.userServicesRecyclerView.layoutManager = LinearLayoutManager(view.context)
 
         val userServicesRv = binding.userServicesRecyclerView
 
         val servicesRvAdapter =  ServicesAdapter(emptyList()){
-            Toast.makeText(view.context, it.id.toString(), Toast.LENGTH_SHORT).show()
+//            Toast.makeText(view.context, it.id.toString(), Toast.LENGTH_SHORT).show()
 
             val bundle = Bundle()
             bundle.putString("service", Gson().toJson(it))
 
-            findNavController().navigate(R.id.aboutServiceFragment, bundle)
+            findNavController().navigate(R.id.action_aboutUserFragment_to_aboutServiceFragment, bundle)
         }
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
@@ -64,6 +64,14 @@ class AboutUserFragment : Fragment() {
             userViewModel.deleteUser(user)
             findNavController().popBackStack()
         }
+
+        binding.btnAddService.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putString("user", Gson().toJson(user))
+
+            findNavController().navigate(R.id.action_aboutUserFragment_to_addServiceFragment, bundle)
+        }
+
         return view
     }
 

@@ -2,6 +2,7 @@ package com.example.pooldiary.fragments.subfragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,8 +47,7 @@ class AboutServiceFragment : Fragment() {
         val tv_time = binding.serviceTime
 
         val service = Gson().fromJson(arguments?.getString("service"), Service::class.java)
-
-
+        Log.d("myTag", arguments?.getString("service").toString());
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         serviceViewModel = ViewModelProvider(this)[ServiceViewModel::class.java]
@@ -73,6 +73,7 @@ class AboutServiceFragment : Fragment() {
             }
         }
 
+//        binding.phSeekBar.value = service.pool_status.toFloat()
         tv_date.text = service.datetime
         tv_time.text = service.datetime
     }

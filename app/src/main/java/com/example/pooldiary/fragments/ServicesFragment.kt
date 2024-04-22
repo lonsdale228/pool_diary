@@ -43,7 +43,7 @@ class ServicesFragment : Fragment() {
             val bundle = Bundle()
             bundle.putString("service", Gson().toJson(it))
 
-            findNavController().navigate(R.id.aboutServiceFragment, bundle)
+            findNavController().navigate(R.id.action_servicesFragment_to_aboutServiceFragment, bundle)
         }
 
         serviceViewModel = ViewModelProvider(this).get(ServiceViewModel::class.java)
@@ -56,7 +56,7 @@ class ServicesFragment : Fragment() {
         val btnAddService = binding.btnAddService
 
         btnAddService.setOnClickListener {
-            serviceViewModel.addService(Service(0,5, "Aboba", "Norm","Yes", "No", "today"))
+            findNavController().navigate(R.id.action_servicesFragment_to_addServiceFragment)
         }
     }
 

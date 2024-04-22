@@ -24,8 +24,9 @@ class ServicesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val service = allServices[position]
         with(holder.binding) {
-              nameService.text = service.pool_status
-              addressService.text = service.note
+            nameService.text = service.pool_status
+            addressService.text = service.note
+            tvLastVisit.text = "Last visit: " + service.datetime
         }
     }
 
