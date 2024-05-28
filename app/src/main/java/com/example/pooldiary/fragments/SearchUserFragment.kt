@@ -34,6 +34,7 @@ class SearchUserFragment : Fragment() {
         clientsRvAdapter = ClientsAdapter(emptyList()) {
             val bundle = Bundle()
             bundle.putString("user", Gson().toJson(it))
+
             findNavController().navigate(R.id.action_searchUserFragment_to_addServiceFragment, bundle)
         }
 

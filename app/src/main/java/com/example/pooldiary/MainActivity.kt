@@ -1,7 +1,10 @@
 package com.example.pooldiary
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.TooltipCompat
+import androidx.core.view.forEach
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -24,6 +27,14 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             navView.menu.findItem(destination.id)?.isChecked = true
         }
+
+        navView.menu.forEach {
+            val view = navView.findViewById<View>(it.itemId)
+            view.setOnLongClickListener {
+                true
+            }
+        }
+
 
         NavigationUI.setupWithNavController(navView, navController)
     }

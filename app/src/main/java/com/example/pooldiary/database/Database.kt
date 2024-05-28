@@ -3,6 +3,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.pooldiary.database.data.ServiceDao
 import com.example.pooldiary.database.data.UserDao
 import com.example.pooldiary.database.data.ChemistryDao
@@ -10,7 +11,9 @@ import com.example.pooldiary.models.Chemistry
 import com.example.pooldiary.models.Service
 import com.example.pooldiary.models.User
 
-@Database(entities = [User::class, Service::class, Chemistry::class], version = 2, exportSchema = false)
+
+@Database(entities = [User::class, Service::class, Chemistry::class], version = 4)
+@TypeConverters(Converters::class)
 abstract class UserDatabase: RoomDatabase(){
     abstract fun userDao(): UserDao
     abstract fun serviceDao(): ServiceDao

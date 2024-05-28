@@ -1,6 +1,7 @@
 package com.example.pooldiary.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,8 +42,10 @@ class ServicesFragment : Fragment() {
         val servicesRv = binding.servicesRecycleView
         val servicesRvAdapter =  ServicesAdapter(emptyList()){
             val bundle = Bundle()
+            Toast.makeText(context, it.datetime.toString(), Toast.LENGTH_SHORT ).show()
+            Log.d("datetime", it.toString())
             bundle.putString("service", Gson().toJson(it))
-
+            bundle.putString("datetime", Gson().toJson(it.datetime.toString()))
             findNavController().navigate(R.id.action_servicesFragment_to_aboutServiceFragment, bundle)
         }
 

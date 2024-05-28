@@ -52,7 +52,11 @@
         android:id="@+id/addUserFragment"
         android:name="com.example.pooldiary.fragments.subfragments.AddUserFragment"
         android:label="fragment_add_user"
-        tools:layout="@layout/fragment_add_user" />
+        tools:layout="@layout/fragment_add_user" >
+        <action
+            android:id="@+id/action_addUserFragment_to_clientsFragment"
+            app:destination="@id/clientsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutUserFragment"
         android:name="com.example.pooldiary.fragments.subfragments.AboutUserFragment"
@@ -95,6 +99,8 @@
         tools:layout="@layout/fragment_search_user" >
         <action
             android:id="@+id/action_searchUserFragment_to_addServiceFragment"
-            app:destination="@id/addServiceFragment" />
+            app:destination="@id/addServiceFragment"
+            app:popUpTo="@id/addServiceFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

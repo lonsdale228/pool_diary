@@ -12,5 +12,6 @@ data class User(
     @ColumnInfo(name = "address") var address: String,
     @ColumnInfo(name = "phone_number") var phone_number: String,
     @ColumnInfo(name = "note") var note: String,
-    @ColumnInfo(name = "coordinates") var coordinates: String
+    @ColumnInfo(name = "coordinates") var coordinates: String,
+    @ColumnInfo(name = "default_service_price") var default_service_price: Int
 )

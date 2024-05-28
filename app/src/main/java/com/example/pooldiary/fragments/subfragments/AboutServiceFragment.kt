@@ -11,11 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.pooldiary.database.Converters
 import com.example.pooldiary.database.view.ServiceViewModel
 import com.example.pooldiary.database.view.UserViewModel
 import com.example.pooldiary.databinding.FragmentAboutServiceBinding
 import com.example.pooldiary.models.Service
 import com.google.gson.Gson
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class AboutServiceFragment : Fragment() {
 
@@ -47,7 +50,13 @@ class AboutServiceFragment : Fragment() {
         val tv_time = binding.serviceTime
 
         val service = Gson().fromJson(arguments?.getString("service"), Service::class.java)
-        Log.d("myTag", arguments?.getString("service").toString());
+//        Log.d("myTag", arguments?.getString("service").toString());
+//
+//        Log.d("priyom", arguments?.getString("datetime").toString())
+
+        val dt = Converters.fromTimestamp(arguments?.getString("datetime")!!.replace("'","").replace("\"", ""))
+
+        service.datetime = dt!!
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         serviceViewModel = ViewModelProvider(this)[ServiceViewModel::class.java]
@@ -56,6 +65,10 @@ class AboutServiceFragment : Fragment() {
             if (user != null) {
                 tv_client_name.text = user.name
                 tv_street_name.text = user.address
+                binding.phSeekBar.value = service.ph_value.toFloat()
+                binding.poolStatusSeekBar.value = service.pool_status.toFloat()
+                binding.tvNote.text = service.note
+                binding.cbPaid.isChecked = service.is_paid
             } else {
                 Toast.makeText(context, "User not found!", Toast.LENGTH_LONG).show()
             }
@@ -74,7 +87,8 @@ class AboutServiceFragment : Fragment() {
         }
 
 //        binding.phSeekBar.value = service.pool_status.toFloat()
-        tv_date.text = service.datetime
-        tv_time.text = service.datetime
+        val formatter = DateTimeFormatter.ofPattern("dd MMMM HH:mm")
+        tv_date.text = service.datetime.format(formatter).toString()
+        tv_time.text = service.datetime.toString()
     }
 }

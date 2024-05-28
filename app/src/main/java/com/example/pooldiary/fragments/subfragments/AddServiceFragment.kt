@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pooldiary.R
@@ -31,6 +32,7 @@ class AddServiceFragment : Fragment() {
 
         if (user!=null){
             binding.tvTest.text = user.name
+            binding.textInputPrice.setText(user.default_service_price.toString())
         }
 
         binding.phSeekBarServices.apply {
@@ -45,11 +47,12 @@ class AddServiceFragment : Fragment() {
 
         serviceViewModel = ViewModelProvider(this).get(ServiceViewModel::class.java)
         binding.addServBtn.setOnClickListener {
-            val formatter = DateTimeFormatter.ofPattern("dd.MM HH:mm")
-            val current = LocalDateTime.now().format(formatter)
-            serviceViewModel.addService(Service(0,user.id,binding.textInputNote.text.toString(), binding.poolStatusSeekBarServices.value.toString(),"est", "non", current))
-
-            findNavController().popBackStack()
+//            val formatter = DateTimeFormatter.ofPattern("dd.MM HH:mm")
+//            val current = LocalDateTime.now().format(formatter)
+            val current = LocalDateTime.now()
+            serviceViewModel.addService(Service(0,user.id,user.name,binding.textInputNote.text.toString(),binding.poolStatusSeekBarServices.value.toString(), binding.phSeekBarServices.value.toString(),"est", "non", current, binding.cbPaid.isChecked, binding.textInputPrice.text.toString().toInt()))
+            findNavController().popBackStack(R.id.servicesFragment, true)
+            findNavController().navigate(R.id.servicesFragment)
         }
 
 

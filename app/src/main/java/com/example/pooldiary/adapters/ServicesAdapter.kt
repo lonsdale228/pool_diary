@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pooldiary.databinding.ServiceRowBinding
 import com.example.pooldiary.models.Service
+import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
+
 class ServicesAdapter(
     private var allServices: List<Service>,
     private val clickListener: (Service) -> Unit
@@ -20,13 +23,14 @@ class ServicesAdapter(
             }
         }
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val service = allServices[position]
         with(holder.binding) {
-            nameService.text = service.pool_status
-            addressService.text = service.note
-            tvLastVisit.text = "Last visit: " + service.datetime
+            nameService.text = service.user_name
+//            addressService.text = service.note
+            tvLastVisit.text = "Last visit: " + service.datetime.toString()
+            tvDaysAgo.text = timeDifference(service.datetime, LocalDateTime.now())
+            tvItemNote.text = service.note
         }
     }
 
@@ -41,6 +45,29 @@ class ServicesAdapter(
     class ViewHolder(val binding: ServiceRowBinding) : RecyclerView.ViewHolder(binding.root)
 }
 
+// todo unhardcode text
+fun timeDifference(fromDateTime: LocalDateTime, toDateTime: LocalDateTime): String {
+    val secondsBetween = ChronoUnit.SECONDS.between(fromDateTime, toDateTime)
+    val minutesBetween = ChronoUnit.MINUTES.between(fromDateTime, toDateTime)
+    val hoursBetween = ChronoUnit.HOURS.between(fromDateTime, toDateTime)
+    val daysBetween = ChronoUnit.DAYS.between(fromDateTime, toDateTime)
+    val weeksBetween = daysBetween / 7
+    val monthsBetween = ChronoUnit.MONTHS.between(fromDateTime, toDateTime)
+
+    return when {
+        secondsBetween < 60 -> "$secondsBetween seconds ago"
+        minutesBetween < 60 -> "$minutesBetween minutes ago"
+        hoursBetween < 24 -> "$hoursBetween hours ago"
+        daysBetween <= 1 -> "$daysBetween day ago"
+        daysBetween <= 13 -> "$daysBetween days ago"
+        daysBetween <= 30 -> {
+            if (weeksBetween == 1L) "1 week ago" else "$weeksBetween weeks ago"
+        }
+        else -> {
+            if (monthsBetween == 1L) "1 month ago" else "$monthsBetween months ago"
+        }
+    }
+}
 class ServiceDiffCallback(private val oldList: List<Service>, private val newList: List<Service>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldList.size
     override fun getNewListSize(): Int = newList.size

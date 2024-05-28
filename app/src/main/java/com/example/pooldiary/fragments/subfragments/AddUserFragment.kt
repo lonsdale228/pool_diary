@@ -51,7 +51,7 @@ class AddUserFragment : Fragment() {
 
         btnAddUser.setOnClickListener {
             if (checkEdits(edits)) {
-                userViewModel.addUser(User(0,name.text.toString(), streetName.text.toString(), "+380"+phoneNumber.text.toString(),note.text.toString(), "1234"))
+                userViewModel.addUser(User(0,name.text.toString(), streetName.text.toString(), "+380"+phoneNumber.text.toString(),note.text.toString(), "1234", 650))
                 findNavController().popBackStack()
             }
         }
