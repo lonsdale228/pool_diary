@@ -55,7 +55,6 @@ class AboutServiceFragment : Fragment() {
 //        Log.d("priyom", arguments?.getString("datetime").toString())
 
         val dt = Converters.fromTimestamp(arguments?.getString("datetime")!!.replace("'","").replace("\"", ""))
-
         service.datetime = dt!!
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]

@@ -63,5 +63,6 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+    implementation("androidx.preference:preference-ktx:1.2.0")
 
 }

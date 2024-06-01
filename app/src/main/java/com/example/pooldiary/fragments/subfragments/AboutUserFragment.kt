@@ -1,5 +1,8 @@
 package com.example.pooldiary.fragments.subfragments;
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +37,20 @@ class AboutUserFragment : Fragment() {
         val view = binding.root
         val user = Gson().fromJson(arguments?.getString("user"), User::class.java)
 
+        binding.button.setOnClickListener{
+            val viberPackageName = "com.viber.voip"
+            val phone = user.phone_number
+            try {
+                activity?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("viber://add?number=$phone")))
+            } catch (ex: ActivityNotFoundException) {
+                try {
+                    activity?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$viberPackageName")))
+                } catch (ex: ActivityNotFoundException) {
+                    activity?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$viberPackageName")))
+                }
+            }
+        }
+
         binding.userName.text = user.name
         binding.userName.isSelected = true
         binding.userPhoneNumber.text = user.phone_number
@@ -47,7 +64,7 @@ class AboutUserFragment : Fragment() {
 
             val bundle = Bundle()
             bundle.putString("service", Gson().toJson(it))
-
+            bundle.putString("datetime", Gson().toJson(it.datetime.toString()))
             findNavController().navigate(R.id.action_aboutUserFragment_to_aboutServiceFragment, bundle)
         }
 

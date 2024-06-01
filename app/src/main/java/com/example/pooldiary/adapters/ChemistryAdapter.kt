@@ -20,6 +20,8 @@ class ChemistryAdapter(
     private val clickListener: (Chemistry) -> Unit
 ) : RecyclerView.Adapter<ChemistryAdapter.ViewHolder>() {
 
+    private val selectedIndexes = mutableMapOf<Int, Int>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             ChemistryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -35,13 +37,16 @@ class ChemistryAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chem = allChemistry[position]
         val price_weights = Gson().fromJson(chem.weights_prices, ChemistryPriceList::class.java)
+        val selectedIndex = selectedIndexes[position] ?: 0
 
         with(holder.binding) {
             lblChemName.text = chem.chemistry_name
 
+            // Clear the existing RadioButtons before adding new ones
+            chemistrRadiogroup.removeAllViews()
+
             price_weights.weights.forEachIndexed { index, item ->
                 val radioButton = RadioButton(chemistrRadiogroup.context).apply {
-
                     val fullname = item.toString() + price_weights.type
                     text = fullname
                     id = View.generateViewId()
@@ -54,23 +59,22 @@ class ChemistryAdapter(
                     setOnClickListener {
                         val priceText = price_weights.prices[index].roundToInt().toString() + " грн"
                         tvPrice.text = priceText
+                        selectedIndexes[position] = index
                     }
                 }
-                if (index == 0) {
-                    radioButton.isChecked = true
-                }
+                radioButton.isChecked = index == selectedIndex
                 chemistrRadiogroup.addView(radioButton)
             }
-            val priceText = price_weights.prices[0].roundToInt().toString() + " грн"
+
+            val priceText = price_weights.prices[selectedIndex].roundToInt().toString() + " грн"
             tvPrice.text = priceText
         }
     }
 
-
     override fun getItemCount(): Int = allChemistry.size
+
     fun setData(newChemistrys: List<Chemistry>) {
-        val diffResult =
-            DiffUtil.calculateDiff(ChemistryDiffCallback(this.allChemistry, newChemistrys))
+        val diffResult = DiffUtil.calculateDiff(ChemistryDiffCallback(this.allChemistry, newChemistrys))
         this.allChemistry = newChemistrys
         diffResult.dispatchUpdatesTo(this)
     }

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pooldiary.databinding.ServiceRowBinding
 import com.example.pooldiary.models.Service
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 class ServicesAdapter(
@@ -25,10 +26,11 @@ class ServicesAdapter(
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val service = allServices[position]
+        val formatter = DateTimeFormatter.ofPattern("dd MMMM HH:mm")
         with(holder.binding) {
             nameService.text = service.user_name
 //            addressService.text = service.note
-            tvLastVisit.text = "Last visit: " + service.datetime.toString()
+            tvLastVisit.text = "Last visit: " + service.datetime.format(formatter).toString()
             tvDaysAgo.text = timeDifference(service.datetime, LocalDateTime.now())
             tvItemNote.text = service.note
         }
