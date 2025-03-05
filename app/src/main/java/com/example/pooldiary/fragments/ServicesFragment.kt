@@ -3,9 +3,13 @@ package com.example.pooldiary.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,9 +37,24 @@ class ServicesFragment : Fragment() {
         return view
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        requireActivity().addMenuProvider(object : MenuProvider{
+//            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+//                menuInflater.inflate(R.menu.three_dots_menu, menu)
+//            }
+//
+//            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+//                return when (menuItem.itemId) {
+//                    R.id.item_settings -> {
+//                        Toast.makeText(requireContext(), "Settings clicked", Toast.LENGTH_SHORT).show()
+//                        true
+//                    }
+//                    else -> false
+//                }
+//            }
+//        })
 
         binding.servicesRecycleView.layoutManager = LinearLayoutManager(view.context)
 
@@ -62,6 +81,7 @@ class ServicesFragment : Fragment() {
             findNavController().navigate(R.id.action_servicesFragment_to_addServiceFragment)
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
